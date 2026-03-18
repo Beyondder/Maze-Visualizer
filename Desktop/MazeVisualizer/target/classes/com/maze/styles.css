@@ -1,0 +1,308 @@
+/* ═══════════════════════════════════════════════════════════════
+   Maze Visualizer — Dark Neon Theme
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Root / Global ─────────────────────────────────────────────── */
+.root {
+    -fx-background-color: #080816;
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 13px;
+}
+
+.root-pane {
+    -fx-background-color: #080816;
+}
+
+/* ── Sidebar container ─────────────────────────────────────────── */
+.sidebar {
+    -fx-background-color: #0e0e26;
+    -fx-border-color: transparent #1e1e4a transparent transparent;
+    -fx-border-width: 0 1 0 0;
+    -fx-pref-width: 268px;
+    -fx-min-width: 240px;
+    -fx-max-width: 280px;
+}
+
+/* ── Title ─────────────────────────────────────────────────────── */
+.title-main {
+    -fx-text-fill: white;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Courier New", "Consolas", monospace;
+    -fx-effect: dropshadow(gaussian, #7c5cfc, 22, 0.55, 0, 0);
+}
+
+.title-sub {
+    -fx-text-fill: #6d28d9;
+    -fx-font-size: 9px;
+    -fx-font-family: "Courier New", "Consolas", monospace;
+    -fx-font-weight: bold;
+}
+
+/* ── Section labels ────────────────────────────────────────────── */
+.section-label {
+    -fx-text-fill: #475569;
+    -fx-font-size: 9.5px;
+    -fx-font-family: "Courier New", "Consolas", monospace;
+    -fx-font-weight: bold;
+}
+
+/* ── Separator ─────────────────────────────────────────────────── */
+.sidebar-sep {
+    -fx-background-color: #1e1e4a;
+    -fx-padding: 0;
+}
+.sidebar-sep .line {
+    -fx-border-color: #1e1e4a;
+    -fx-border-width: 0.5px;
+}
+
+/* ── ComboBox (shared dark style) ──────────────────────────────── */
+.combo-dark {
+    -fx-background-color: #13132e;
+    -fx-background-radius: 7px;
+    -fx-border-color: #2a2a5a;
+    -fx-border-radius: 7px;
+    -fx-border-width: 1px;
+    -fx-padding: 0;
+}
+
+.combo-dark .combo-box-base {
+    -fx-background-color: #13132e;
+    -fx-border-color: transparent;
+    -fx-padding: 6 10 6 10;
+}
+
+.combo-dark .cell,
+.combo-dark .list-cell {
+    -fx-background-color: #13132e;
+    -fx-text-fill: #cbd5e1;
+    -fx-padding: 5 10 5 10;
+    -fx-font-size: 12.5px;
+}
+
+.combo-dark .list-cell:hover {
+    -fx-background-color: #1e1e4a;
+}
+
+.combo-dark .list-cell:selected {
+    -fx-background-color: #2d1b69;
+    -fx-text-fill: white;
+}
+
+.combo-dark .list-view {
+    -fx-background-color: #13132e;
+    -fx-border-color: #2a2a5a;
+    -fx-border-width: 1px;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+}
+
+.combo-dark .arrow-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 8 0 0;
+}
+
+.combo-dark .arrow {
+    -fx-background-color: #6d28d9;
+    -fx-shape: "M 0 0 L 6 6 L 12 0 Z";
+    -fx-scale-shape: false;
+    -fx-pref-width: 10px;
+    -fx-pref-height: 6px;
+}
+
+.combo-dark:hover {
+    -fx-border-color: #4a3fa0;
+}
+
+.combo-dark:focused {
+    -fx-border-color: #7c5cfc;
+    -fx-effect: dropshadow(gaussian, #7c5cfc, 8, 0.3, 0, 0);
+}
+
+/* ── Speed slider ──────────────────────────────────────────────── */
+.speed-slider .track {
+    -fx-background-color: #1e1e45;
+    -fx-background-radius: 3px;
+    -fx-pref-height: 4px;
+}
+
+.speed-slider .colored-track-area {
+    -fx-background-color: linear-gradient(to right, #6d28d9, #7c5cfc);
+}
+
+.speed-slider .thumb {
+    -fx-background-color: #7c5cfc;
+    -fx-background-radius: 50%;
+    -fx-pref-width:  16px;
+    -fx-pref-height: 16px;
+    -fx-effect: dropshadow(gaussian, #7c5cfc, 10, 0.5, 0, 0);
+}
+
+.speed-slider .thumb:hover {
+    -fx-background-color: #a78bfa;
+    -fx-effect: dropshadow(gaussian, #a78bfa, 14, 0.6, 0, 0);
+}
+
+.speed-slider .thumb:pressed {
+    -fx-background-color: #c4b5fd;
+}
+
+.speed-value {
+    -fx-text-fill: #a78bfa;
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-min-width: 32px;
+}
+
+/* ── Buttons — base ────────────────────────────────────────────── */
+.maze-btn {
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-padding: 10 14 10 14;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-alignment: center-left;
+}
+
+.maze-btn:disabled {
+    -fx-opacity: 0.38;
+    -fx-effect: none;
+    -fx-cursor: default;
+}
+
+/* Generate — purple gradient ──────────────────────────────────── */
+.btn-primary {
+    -fx-background-color: linear-gradient(to right, #6d28d9, #4f46e5);
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, #6d28d9, 14, 0.4, 0, 2);
+}
+
+.btn-primary:hover {
+    -fx-background-color: linear-gradient(to right, #7c3aed, #6366f1);
+    -fx-effect: dropshadow(gaussian, #7c5cfc, 20, 0.55, 0, 3);
+}
+
+.btn-primary:pressed {
+    -fx-background-color: linear-gradient(to right, #5b21b6, #3730a3);
+    -fx-effect: none;
+}
+
+/* Step — outlined purple ──────────────────────────────────────── */
+.btn-secondary {
+    -fx-background-color: transparent;
+    -fx-border-color: #4a3fa0;
+    -fx-border-width: 1.5px;
+    -fx-text-fill: #a78bfa;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #2d1b6922;
+    -fx-border-color: #7c5cfc;
+    -fx-text-fill: #c4b5fd;
+}
+
+.btn-secondary:pressed {
+    -fx-background-color: #2d1b6944;
+}
+
+/* Pause — amber gradient ──────────────────────────────────────── */
+.btn-warning {
+    -fx-background-color: linear-gradient(to right, #d97706, #dc2626);
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, #d97706, 10, 0.35, 0, 2);
+}
+
+.btn-warning:hover {
+    -fx-background-color: linear-gradient(to right, #f59e0b, #ef4444);
+    -fx-effect: dropshadow(gaussian, #f59e0b, 16, 0.5, 0, 2);
+}
+
+/* Solve — emerald-to-cyan gradient ───────────────────────────── */
+.btn-solve {
+    -fx-background-color: linear-gradient(to right, #059669, #0891b2);
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, #10b981, 14, 0.45, 0, 2);
+    -fx-font-size: 12.5px;
+}
+
+.btn-solve:hover {
+    -fx-background-color: linear-gradient(to right, #10b981, #06b6d4);
+    -fx-effect: dropshadow(gaussian, #34d399, 22, 0.6, 0, 3);
+}
+
+.btn-solve:pressed {
+    -fx-background-color: linear-gradient(to right, #047857, #0e7490);
+    -fx-effect: none;
+}
+
+/* Reset — outlined slate ──────────────────────────────────────── */
+.btn-reset {
+    -fx-background-color: transparent;
+    -fx-border-color: #334155;
+    -fx-border-width: 1.5px;
+    -fx-text-fill: #64748b;
+}
+
+.btn-reset:hover {
+    -fx-background-color: #33415522;
+    -fx-border-color: #64748b;
+    -fx-text-fill: #94a3b8;
+}
+
+/* ── Status label ──────────────────────────────────────────────── */
+.status-label {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 11.5px;
+    -fx-font-style: italic;
+    -fx-wrap-text: true;
+}
+
+/* ── Legend ────────────────────────────────────────────────────── */
+.legend-box {
+    -fx-background-color: #0a0a20;
+    -fx-background-radius: 8px;
+    -fx-border-color: #1e1e4a;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+    -fx-padding: 12 14 12 14;
+}
+
+.legend-label {
+    -fx-text-fill: #475569;
+    -fx-font-size: 11px;
+}
+
+/* ── Canvas area ───────────────────────────────────────────────── */
+.canvas-pane {
+    -fx-background-color: #080816;
+}
+
+/* ── Scroll bar (combo dropdown) ──────────────────────────────── */
+.scroll-bar {
+    -fx-background-color: #13132e;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #2a2a5a;
+    -fx-background-radius: 4px;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #4a3fa0;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 2px;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+    -fx-background-color: #4a3fa0;
+    -fx-shape: " ";
+    -fx-padding: 3px;
+}
