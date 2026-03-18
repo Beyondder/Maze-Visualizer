@@ -47,12 +47,12 @@ public class MainView extends BorderPane {
     private VBox buildSidebar() {
         VBox box = new VBox();
         box.getStyleClass().add("sidebar");
-        box.setPrefWidth(268);
+        box.setPrefWidth(248);
 
         // ── Title ──────────────────────────────────────────────────────
         VBox titleBlock = new VBox(3);
         titleBlock.setPadding(new Insets(26, 20, 18, 20));
-        Label title  = new Label("MAZE");
+        Label title  = new Label("Maze Algorithm Visualizer");
         title.getStyleClass().add("title-main");
         Label sub    = new Label("VISUALIZER");
         sub.getStyleClass().add("title-sub");
@@ -137,9 +137,9 @@ public class MainView extends BorderPane {
     // ── Section: generation buttons ────────────────────────────────────
 
     private VBox buildGenerationButtons() {
-        generateBtn = makeButton("⚡  GENERATE",  "btn-primary");
-        stepBtn     = makeButton("▶  STEP",       "btn-secondary");
-        stopBtn     = makeButton("⏸  PAUSE",      "btn-warning");
+        generateBtn = makeButton("  GENERATE",  "btn-primary");
+        stepBtn     = makeButton("  NEXT STEP",       "btn-secondary");
+        stopBtn     = makeButton("■  STOP",      "btn-warning");
 
         generateBtn.setOnAction(e -> controller.generate(algoCombo.getValue()));
         stepBtn    .setOnAction(e -> controller.step(algoCombo.getValue()));
@@ -153,7 +153,7 @@ public class MainView extends BorderPane {
     // ── Section: solve ─────────────────────────────────────────────────
 
     private VBox buildSolveSection() {
-        solveBtn = makeButton("✦  SOLVE WITH A*", "btn-solve");
+        solveBtn = makeButton("SOLVE WITH A*", "btn-solve");
         resetBtn = makeButton("↺  RESET",         "btn-reset");
 
         solveBtn.setOnAction(e -> controller.solve());
