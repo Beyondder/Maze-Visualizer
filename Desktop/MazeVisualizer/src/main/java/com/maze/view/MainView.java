@@ -101,9 +101,9 @@ public class MainView extends BorderPane {
 
     private VBox buildSizeSection() {
         sizeCombo = new ComboBox<>();
-        sizeCombo.getItems().addAll("10 × 10","15 × 15","20 × 20",
-                                    "25 × 25","30 × 30","40 × 40","50 × 50");
-        sizeCombo.getSelectionModel().select(2);   // default 20×20
+        sizeCombo.getItems().addAll("5 × 5","10 × 10","15 × 15","20 × 20",
+                                    "25 × 25","30 × 30","40 × 40","50 × 50","70 × 70", "100 × 100");
+        sizeCombo.getSelectionModel().select(3);   // default 20×20
         sizeCombo.setMaxWidth(Double.MAX_VALUE);
         sizeCombo.getStyleClass().add("combo-dark");
         sizeCombo.setOnAction(e -> applySize());
@@ -114,7 +114,7 @@ public class MainView extends BorderPane {
     // ── Section: speed ─────────────────────────────────────────────────
 
     private VBox buildSpeedSection() {
-        speedSlider = new Slider(1, 200, 30);
+        speedSlider = new Slider(1, 1000, 30);
         speedSlider.getStyleClass().add("speed-slider");
 
         speedLabel = new Label("30");
@@ -126,7 +126,15 @@ public class MainView extends BorderPane {
             speedLabel.setText(String.valueOf(v));
             controller.setSpeed(v);
         });
-
+         speedSlider.setOnScroll(event -> {
+            double delta = event.getDeltaY();
+            // Increase if scrolling up/right, decrease if down/left
+            double newValue = speedSlider.getValue() + (delta > 0 ? 1.0 : -1.0);
+            
+            // Ensure the value stays within bounds
+            speedSlider.setValue(Math.max(speedSlider.getMin(), Math.min(speedSlider.getMax(), newValue)));
+            event.consume(); // Prevent scrolling the parent container
+        });
         HBox row = new HBox(8, speedSlider, speedLabel);
         row.setAlignment(Pos.CENTER_LEFT);
         HBox.setHgrow(speedSlider, Priority.ALWAYS);
@@ -187,11 +195,10 @@ public class MainView extends BorderPane {
         box.getChildren().addAll(
             legendRow("#10b981",    "Start cell"),
             legendRow("#f43f5e",    "End cell"),
-            legendRow("#c084fc",    "Current cell"),
-            legendRow("#6d28d9aa", "Frontier"),
-            legendRow("#0ea5e9aa", "A* open set"),
-            legendRow("#1e3a8acc", "A* closed set"),
-            legendRow("#4ade80",    "Solution path")
+            legendRow("red",    "Current cell"),
+            legendRow("white", "Nearby cells"),
+            legendRow("blue", "A* path cell"),
+            legendRow("#486856",    "Solution path")
         );
 
         return box;
@@ -245,9 +252,9 @@ public class MainView extends BorderPane {
         } else if (controller.isSolving()) {
             statusLabel.setText("Solving with A*…");
         } else if (genDone) {
-            statusLabel.setText("Maze ready!  Click  ✦ Solve  to find the shortest path.");
+            statusLabel.setText("Maze done!  Click  Solve  to find the shortest path.");
         } else {
-            statusLabel.setText("Click  ⚡ Generate  or step through manually.");
+            statusLabel.setText("Click  Generate  or step through manually.");
         }
     }
 
